@@ -2,34 +2,34 @@
 /=  index
   /^  octs
   /;  as-octs:mimes:html
-  /:  /===/app/%APPNAME%/index
+  /:  /===/app/odp/index
   /|  /html/
       /~  ~
   ==
 /=  tile-js
   /^  octs
   /;  as-octs:mimes:html
-  /:  /===/app/%APPNAME%/js/tile
+  /:  /===/app/odp/js/tile
   /|  /js/
       /~  ~
   ==
 /=  script
   /^  octs
   /;  as-octs:mimes:html
-  /:  /===/app/%APPNAME%/js/index
+  /:  /===/app/odp/js/index
   /|  /js/
       /~  ~
   ==
 /=  style
   /^  octs
   /;  as-octs:mimes:html
-  /:  /===/app/%APPNAME%/css/index
+  /:  /===/app/odp/css/index
   /|  /css/
       /~  ~
   ==
-/=  %APPNAME%-png
+/=  odp-png
   /^  (map knot @)
-  /:  /===/app/%APPNAME%/img  /_  /png/
+  /:  /===/app/odp/img  /_  /png/
 ::
 |%
 +$  card  card:agent:gall
@@ -38,16 +38,16 @@
 =<
   |_  bol=bowl:gall
   +*  this       .
-      %APPNAME%-core  +>
-      cc         ~(. %APPNAME%-core bol)
+      odp-core  +>
+      cc         ~(. odp-core bol)
       def        ~(. (default-agent this %|) bol)
   ::
   ++  on-init
     ^-  (quip card _this)
-    =/  launcha  [%launch-action !>([%add %%APPNAME% / '/~%APPNAME%/js/tile.js'])]
+    =/  launcha  [%launch-action !>([%add %odp / '/~odp/js/tile.js'])]
     :_  this
-    :~  [%pass / %arvo %e %connect [~ /'~%APPNAME%'] %%APPNAME%]
-        [%pass /%APPNAME% %agent [our.bol %launch] %poke launcha]
+    :~  [%pass / %arvo %e %connect [~ /'~odp'] %odp]
+        [%pass /odp %agent [our.bol %launch] %poke launcha]
     ==
   ++  on-poke
     |=  [=mark =vase]
@@ -96,18 +96,18 @@
   ^-  simple-payload:http
   =+  url=(parse-request-line url.request.inbound-request)
   ?+  site.url  not-found:gen
-      [%'~%APPNAME%' %css %index ~]  (css-response:gen style)
-      [%'~%APPNAME%' %js %tile ~]    (js-response:gen tile-js)
-      [%'~%APPNAME%' %js %index ~]   (js-response:gen script)
+      [%'~odp' %css %index ~]  (css-response:gen style)
+      [%'~odp' %js %tile ~]    (js-response:gen tile-js)
+      [%'~odp' %js %index ~]   (js-response:gen script)
   ::
-      [%'~%APPNAME%' %img @t *]
+      [%'~odp' %img @t *]
     =/  name=@t  i.t.t.site.url
-    =/  img  (~(get by %APPNAME%-png) name)
+    =/  img  (~(get by odp-png) name)
     ?~  img
       not-found:gen
     (png-response:gen (as-octs:mimes:html u.img))
   ::
-      [%'~%APPNAME%' *]  (html-response:gen index)
+      [%'~odp' *]  (html-response:gen index)
   ==
 ::
 --

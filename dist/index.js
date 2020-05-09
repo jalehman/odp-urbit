@@ -1,4 +1,4 @@
-import React from 'react';
+const _jsxFileName = "/Users/josh/Projects/odp-urbit/src/index.js";import React from 'react';
 import ReactDOM from 'react-dom';
 import { Root } from '/components/root';
 import { api } from '/api';
@@ -11,6 +11,7 @@ api.setAuthTokens({
 
 subscription.start();
 
+
 ReactDOM.render((
-  <Root />
+  React.createElement(Root, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 16}} )
 ), document.querySelectorAll("#root")[0]);
